@@ -1,0 +1,212 @@
+#sidebarA {
+    color: white;
+}
+
+#filterResults {
+    font-size: 14px;
+    font-weight: 900;
+    color: white;
+    background-color: #EE3532;
+    border: 1px solid #55565A;
+}
+
+.theme {
+    background-color: #FFFFFF;
+}
+
+.select {
+    font-style: italic;
+    opacity: .7;
+}
+
+.mapboxgl-ctrl-geocoder--input {
+    padding: 6px 30px;
+    margin-left: 5px;
+}
+
+::-webkit-scrollbar {
+    width: 3px;
+    height: 3px;
+    border-left: 0;
+    background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-track {
+    background: none;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 0;
+    background: #2A395F;
+}
+
+.clearfix {
+    display: block;
+}
+
+.clearfix::after {
+    content: '.';
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.mapboxgl-popup-content {
+    font: 400 15px/22px 'Open Sans', Sans-serif;
+    text-align: center;
+    padding: 5;
+    width: 100%;
+}
+
+.mapboxgl-popup-close-button {
+    display: none;
+}
+
+.mapboxgl-popup-content h3 {
+    color: black;
+    font-weight: 500;
+    margin: 0;
+    display: block;
+}
+
+.map-overlay {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.9);
+    margin-right: 20px;
+    font-family: 'Open Sans', sans-serif;
+    overflow: auto;
+    border-radius: 15px;
+    z-index: 100;
+}
+
+#features {
+    bottom: 0;
+    height: 300px;
+    margin-bottom: 40px;
+    width: 300px;
+}
+
+#legend {
+    padding: 10px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    line-height: 18px;
+    height: 180px;
+    width: 155px;
+    bottom: 40px;
+    left: 380px;
+}
+
+#legend div span {
+    border-radius: 50%;
+    display: inline-block;
+    height: 10px;
+    margin-right: 10px;
+    width: 10px;
+}
+
+.view-legend {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.9);
+    margin-right: 20px;
+    font-family: 'Open Sans', sans-serif;
+    border-radius: 15px;
+    z-index: 100;
+    padding: 10px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    line-height: 18px;
+    height: 120px;
+    margin-top: 80px;
+    width: 130px;
+    top: 40px;
+    left: 380px;
+    display: none;
+}
+
+.view-legend div span {
+    border-radius: 50%;
+    display: inline-block;
+    height: 10px;
+    margin-right: 10px;
+    width: 10px;
+}
+
+h1 {
+    font: 'Open Sans', Sans-serif;
+    font-size: large;
+    margin: 10px 0;
+    text-align: center;
+    font-weight: 900;
+}
+
+h2 {
+    font: 'Open Sans', Sans-serif;
+    font-size: medium;
+    font-weight: 900;
+    margin: 10px 0;
+    text-align: center;
+    color: #4E5156;
+}
+
+p {
+    font: 'Open Sans', Sans-serif;
+    text-align: left;
+    font-weight: 500;
+    display: inline-block;
+}
+
+h3 {
+    color: black;
+}
+
+.avatar {
+    display: block;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 50%;
+}
+
+hr {
+    height: 1px;
+    width: 260px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-width: 0;
+    color: gray;
+    background-color: gray;
+}
+
+#menu {
+    background: #fff;
+    position: absolute;
+    z-index: 1;
+    top: 10px;
+    left: 380px;
+    border-radius: 10px;
+    width: 300px;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    font-family: 'Open Sans', sans-serif;
+}
+
+#sen1,
+#sen2,
+#image {
+    max-width: 80px;
+    max-height: 80px;
+    margin-left: 1.5em;
+    border-radius: 10px;
+    display: inline-block;
+}
+
+#description {
+    color: black;
+    text-align: center;
+}
+
+#data-card {
+    color: black;
+}

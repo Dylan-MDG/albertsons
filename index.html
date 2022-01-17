@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link href='https://api.mapbox.com/mapbox-assembly/v0.24.0/assembly.min.css' rel='stylesheet'>
+    <script src='https://api.mapbox.com/mapbox-assembly/v0.24.0/assembly.js'></script>
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
+    <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.2.0/mapbox-gl-geocoder.min.js'></script>
+    <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.2.0/mapbox-gl-geocoder.css' type='text/css' />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/geojson/0.5.0/geojson.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@turf/turf@5/turf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js"></script>
+    <script src='https://npmcdn.com/csv2geojson@latest/csv2geojson.js'></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/813e74f963.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel='stylesheet' href="style.css" />
+</head>
+
+<body>
+
+    <div class='flex-parent viewport-full relative scroll-hidden'>
+        <div class='flex-child w-full w360-ml absolute static-ml left bottom'>
+            <div class='flex-parent flex-parent--column viewport-third bg-white'>
+                <div class='flex-child flex-child--grow'>
+                    <div id="sidebarA" class="flex-parent flex-parent--column-ml flex-parent--center-main theme py12 px12 ">
+                        <img src="https://drive.google.com/uc?export=view&id=1Xpj3Y0kLrJqZUBuA0UKg0vFTRLzDY8Sz">
+
+                        <h3 id='title' class='txt-l-ml txt-m txt-bold mb6 mr0-ml mr24 align-center block'>
+                        </h3>
+                        <p id='description' class='txt-s py12 none block-ml'>
+                        </p>
+                        <div class="flex-parent flex-parent--center-main relative-ml absolute right top mt0-ml mt6">
+                            <button id='filterResults' class='txt-bold btn mr0-ml mr12 px18-ml px6'>
+                                <svg class='icon inline-block align-middle h24 w24'>
+                                    <use xlink:href='#icon-filter' /></svg>
+                                <p class="inline-block-ml align-middle remove none">Show Filters</p>
+                            </button>
+
+                        </div>
+                        </br>
+                        <hr>
+                        <div id='data-card'>
+                            <p></p>
+                        </div>
+                    </div>
+                    <div id="listings" class="flex-child viewport-twothirds py12 px12 listings scroll-auto"></div>
+                    <!-- <div id="menu">
+                        <h2 style="text-align: left;">Map Views</h2>
+                        <input id="ckq7g8e1k2rhr17llm91ytvp5" type="radio" name="rtoggle" value="None" checked="checked">
+                        <label for="ckq7g8e1k2rhr17llm91ytvp5">None</label>
+                        <input id="ckr3i4wkk0sur1anpsgivu5p3" type="radio" name="rtoggle" value="Latino Voters">
+                        <label for="ckr3i4wkk0sur1anpsgivu5p3">Latino Voters</label>
+                        <input id="ckr53ol0z0oql17mx36iuqm0z" type="radio" name="rtoggle" value="All Voters">
+                        <label for="ckr53ol0z0oql17mx36iuqm0z">All Voters</label>
+                        <input id="ckr2y62ng1ntg18pd6rtrgdc1" type="radio" name="rtoggle" value="Party Affiliation">
+                        <label for="ckr2y62ng1ntg18pd6rtrgdc1">Party Affiliation</label>
+                        <input id="ckr6cm0u20vz818qiwjcth186" type="radio" name="rtoggle" value="Donors by District">
+                        <label for="ckr6cm0u20vz818qiwjcth186">Donors by District</label>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+        <div class='flex-child flex-child--grow w-auto viewport-full-ml viewport-twothirds' id='map'>
+            <div class='map-overlay' id='features'>
+                <div id='pd'>
+                    <p></p>
+                </div>
+            </div>
+        </div>
+        <!-- <div id="legend" class="map-overlay">
+            <h2 style="text-align: left;">Affiliate Regions</h2>
+            <div><span style="background-color: #00ADBE"></span>California</div>
+            <div><span style="background-color: #F05538"></span>Far West</div>
+            <div><span style="background-color: #F5852F"></span>Southeast</div>
+            <div><span style="background-color: #FFC81B"></span>Texas</div>
+            <div><span style="background-color: #B3D238"></span>Northeast</div>
+            <div><span style="background-color: #0D53A5"></span>Midwest</div>
+        </div>
+        <div id="latino-voters" class="view-legend">
+            <div><span style="background-color: #eef91a"></span>>50,000</div>
+            <div><span style="background-color: #e89c4f"></span>50,000</div>
+            <div><span style="background-color: #d36d64"></span>100,000</div>
+            <div><span style="background-color: #b9467a"></span>200,000</div>
+            <div><span style="background-color: #67009e"></span>357,000</div>
+        </div>
+        <div id="all-voters" class="view-legend">
+            <div><span style="background-color: #eef91a"></span>>100,000</div>
+            <div><span style="background-color: #e89c4f"></span>100,000</div>
+            <div><span style="background-color: #d36d64"></span>300,000</div>
+            <div><span style="background-color: #b9467a"></span>500,000</div>
+            <div><span style="background-color: #67009e"></span>650,000</div>
+        </div>
+        <div id="party-legend" class="view-legend">
+            <div><span style="background-color: #0015bc"></span>Democratic</div>
+            <div><span style="background-color: #e00000"></span>Republican</div>
+            <div><span style="background-color: #c45fc4"></span>Split</div>
+        </div> -->
+
+        <div id='modal' class='absolute top right bottom left scroll-auto hide-visually flex-parent flex-parent--center-main mt120-ml'>
+            <div class='pt36'>
+                <div class='flex-child bg-white round relative scroll-auto'>
+                    <button id='exitButton' class='absolute top right px12 py12'>
+                        <svg class='icon link color-darken50'>
+                            <use xlink:href='#icon-close'></use>
+                        </svg>
+                    </button>
+                    <div class='px24 py24'>
+                        <form id="filters"></form>
+                        <div class='align-center py12'></div>
+                        <div class="flex-parent flex-parent--center-main">
+                            <button id="removeFilters" class="btn">Reset Filters</button>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    </div>
+</body>
+
+<script>
+</script>
+<script src="config.js"></script>
+<script src="app.js"></script>
+
+</html>
