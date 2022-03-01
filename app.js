@@ -25,39 +25,47 @@ function flyToLocation(currentFeature) {
     });
 };
 
+
+
 function createPopup(currentFeature) {
 
-    var description = `<h3 style="background-color: black; color: white;">` +
-        currentFeature.properties["BANNER_NM"] +
-        `</h3><h4><b>Hours of Operation: </b></h4>` +
-        `</br><p>Sunday:&nbsp;</p>` +
-        currentFeature.properties["SUNDAY_OPEN_HR"] +
-        `<p>-</p>` +
+    var url = currentFeature.properties["LOGO_IMAGE"];
+
+var xhr = new XMLHttpRequest();
+xhr.open("GET", url);
+xhr.responseType = "blob";
+xhr.onload = response;
+xhr.send();
+
+function response(e) {
+    var urlCreator = window.URL || window.webkitURL;
+    var imageUrl = urlCreator.createObjectURL(this.response);
+    document.querySelector("#image").src = imageUrl;
+};
+
+    var description = `<img id="image"/>` +
+        `<h4><b>Hours of Operation: </b></h4>` +
+        `<p id='small-p'>Sunday:&nbsp;` +
+        currentFeature.properties["SUNDAY_OPEN_HR"] + `-` +
         currentFeature.properties["SUNDAY_CLOSE_HR"] +
-        `</br><p>Monday:&nbsp;</p>` +
-        currentFeature.properties["MONDAY_OPEN_HR"] +
-        `<p>-</p>` +
+        `</br>Monday:&nbsp;` +
+        currentFeature.properties["MONDAY_OPEN_HR"] + `-` +
         currentFeature.properties["MONDAY_CLOSE_HR"] +
-        `</br><p>Tuesday:&nbsp;</p>` +
-        currentFeature.properties["TUESDAY_OPEN_HR"] +
-        `<p>-</p>` +
+        `</br>Tuesday:&nbsp;` +
+        currentFeature.properties["TUESDAY_OPEN_HR"] + `-` +
         currentFeature.properties["TUESDAY_CLOSE_HR"] +
-        `</br><p>Wendesday:&nbsp;</p>` +
-        currentFeature.properties["WEDNESDAY_OPEN_HR"] +
-        `<p>-</p>` +
+        `</br>Wendesday:&nbsp;` +
+        currentFeature.properties["WEDNESDAY_OPEN_HR"] + `-` +
         currentFeature.properties["WEDNESDAY_CLOSE_HR"] +
-        `</br><p>Thursday:&nbsp;</p>` +
-        currentFeature.properties["THURSDAY_OPEN_HR"] +
-        `<p>-</p>` +
+        `</br>Thursday:&nbsp;` +
+        currentFeature.properties["THURSDAY_OPEN_HR"] + `-` +
         currentFeature.properties["THURSDAY_CLOSE_HR"] +
-        `</br><p>Friday:&nbsp;</p>` +
-        currentFeature.properties["FRIDAY_OPEN_HR"] +
-        `<p>-</p>` +
+        `</br>Friday:&nbsp;` +
+        currentFeature.properties["FRIDAY_OPEN_HR"] + `-` +
         currentFeature.properties["FRIDAY_CLOSE_HR"] +
-        `</br><p>Saturday:&nbsp;</p>` +
-        currentFeature.properties["SATURDAY_OPEN_HR"] +
-        `<p>-</p>` +
-        currentFeature.properties["SATURDAY_CLOSE_HR"];
+        `</br>Saturday:&nbsp;` +
+        currentFeature.properties["SATURDAY_OPEN_HR"] + `-` +
+        currentFeature.properties["SATURDAY_CLOSE_HR"] + `</p>`;
 
     const popups = document.getElementsByClassName("mapboxgl-popup");
     /** Check if there is already a popup on the map and if so, remove it */

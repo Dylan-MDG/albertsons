@@ -192,13 +192,10 @@ hr {
     font-family: 'Open Sans', sans-serif;
 }
 
-#sen1,
-#sen2,
 #image {
-    max-width: 80px;
-    max-height: 80px;
-    margin-left: 1.5em;
-    border-radius: 10px;
+    max-width: 100px;
+    margin-left: auto;
+    margin-right: auto;
     display: inline-block;
 }
 
@@ -209,4 +206,8 @@ hr {
 
 #data-card {
     color: black;
+}
+
+#small-p {
+    font-size: x-small;
 }
