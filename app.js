@@ -45,25 +45,25 @@ function response(e) {
 
     var description = `<img id="image"/>` +
         `<h4><b>Hours of Operation: </b></h4>` +
-        `<p id='small-p'>Sunday:&nbsp;` +
+        `<p id='small-p'>S:&nbsp;` +
         currentFeature.properties["SUNDAY_OPEN_HR"] + `-` +
         currentFeature.properties["SUNDAY_CLOSE_HR"] +
-        `</br>Monday:&nbsp;` +
+        `</br>M:&nbsp;` +
         currentFeature.properties["MONDAY_OPEN_HR"] + `-` +
         currentFeature.properties["MONDAY_CLOSE_HR"] +
-        `</br>Tuesday:&nbsp;` +
+        `</br>T:&nbsp;` +
         currentFeature.properties["TUESDAY_OPEN_HR"] + `-` +
         currentFeature.properties["TUESDAY_CLOSE_HR"] +
-        `</br>Wendesday:&nbsp;` +
+        `</br>W:&nbsp;` +
         currentFeature.properties["WEDNESDAY_OPEN_HR"] + `-` +
         currentFeature.properties["WEDNESDAY_CLOSE_HR"] +
-        `</br>Thursday:&nbsp;` +
+        `</br>T:&nbsp;` +
         currentFeature.properties["THURSDAY_OPEN_HR"] + `-` +
         currentFeature.properties["THURSDAY_CLOSE_HR"] +
-        `</br>Friday:&nbsp;` +
+        `</br>F:&nbsp;` +
         currentFeature.properties["FRIDAY_OPEN_HR"] + `-` +
         currentFeature.properties["FRIDAY_CLOSE_HR"] +
-        `</br>Saturday:&nbsp;` +
+        `</br>S:&nbsp;` +
         currentFeature.properties["SATURDAY_OPEN_HR"] + `-` +
         currentFeature.properties["SATURDAY_CLOSE_HR"] + `</p>`;
 
